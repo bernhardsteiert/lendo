@@ -580,7 +580,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.0</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.1</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -715,7 +715,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.0<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.1<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -806,10 +806,22 @@
     roomCode = code;
     localStorage.setItem("leihgaben_room", code);
     document.getElementById("room-label-large").textContent = "Raum: " + code;
+    // Zuerst Cache laden (sofort sichtbar)
+    const cached = localStorage.getItem("lendo_cache_" + code);
+    if (cached) {
+      items = JSON.parse(cached);
+      showMain();
+      initScroll();
+      if (!listEventsInited) { initListEvents(); listEventsInited = true; }
+      renderList();
+    }
+    // Dann online laden falls verfügbar
     await loadItems();
-    showMain();
-    initScroll();
-    if (!listEventsInited) { initListEvents(); listEventsInited = true; }
+    if (!cached) {
+      showMain();
+      initScroll();
+      if (!listEventsInited) { initListEvents(); listEventsInited = true; }
+    }
     if (pollTimer) clearInterval(pollTimer);
     pollTimer = setInterval(loadItems, 5000);
   }
@@ -818,25 +830,23 @@
 
   // ── Data ──
   async function loadItems() {
+    if (!navigator.onLine) return; // Offline: nichts tun, gecachte Daten behalten
     try {
       const data = await fbGet(`rooms/${roomCode}/items`);
       const n = data || {};
-      // Nur neu rendern wenn sich Keys geändert haben (neue/gelöschte Items)
-      // oder wenn ein anderes Gerät Änderungen gemacht hat
+      // Im localStorage cachen
+      localStorage.setItem("lendo_cache_" + roomCode, JSON.stringify(n));
       const oldKeys = Object.keys(items).sort().join(',');
       const newKeys = Object.keys(n).sort().join(',');
       const keysChanged = oldKeys !== newKeys;
-      // Prüfe ob fremde Änderungen kamen (nicht von uns selbst getoggled)
       const foreignChange = Object.keys(n).some(k => {
-        if (!items[k]) return true; // neues Item
-        // Änderung an Feldern die nicht returned/returnedDate sind
+        if (!items[k]) return true;
         return ['item','person','lender','lentDate','returnDate'].some(f => items[k][f] !== n[k][f]);
       });
       if (keysChanged || foreignChange) {
         items = n;
         renderList();
       } else {
-        // Nur items-Objekt aktualisieren ohne re-render
         items = n;
       }
     } catch(e) { console.error(e); }
