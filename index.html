@@ -580,7 +580,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.1</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.2</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -719,7 +719,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.1<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.2<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1240,7 +1240,7 @@
     if (saved) await enterRoom(saved);
   }
 
-  init();
+  document.addEventListener("DOMContentLoaded", () => init());
 </script>
 <!-- ── FILTER SHEET ── -->
 <div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;backdrop-filter:blur(2px)"></div>
