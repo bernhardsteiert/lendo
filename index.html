@@ -580,7 +580,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.3</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.4</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -719,7 +719,60 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.3<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.4<br>Daten gespeichert auf Firebase</div>
+  </div>
+</div>
+
+
+<!-- ── FILTER SHEET ── -->
+<div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;backdrop-filter:blur(2px)"></div>
+<div id="filter-sheet" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:101;max-width:430px;margin:0 auto;background:var(--surface);border-radius:20px 20px 0 0;padding:0 0 40px;transform:translateY(100%);transition:transform 0.3s cubic-bezier(.32,.72,0,1)">
+  <div style="width:36px;height:4px;background:var(--sep);border-radius:2px;margin:10px auto 4px"></div>
+  <div style="padding:12px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Status</div>
+  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
+    <button class="sheet-row" onclick="applyFilter('status','alle')">
+      <span>Alle</span><span class="sheet-check" id="fc-alle">✓</span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','offen')" style="border-top:0.5px solid var(--sep)">
+      <span>Offen</span><span class="sheet-check" id="fc-offen"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','zurueck')" style="border-top:0.5px solid var(--sep)">
+      <span>Zurück</span><span class="sheet-check" id="fc-zurueck"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','ueberfaellig')" style="border-top:0.5px solid var(--sep)">
+      <span style="color:var(--red)">Überfällig</span><span class="sheet-check" id="fc-ueberfaellig"></span>
+    </button>
+  </div>
+  <div style="padding:16px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sortierung</div>
+  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
+    <button class="sheet-row" onclick="applyFilter('sort','datum')">
+      <span>Datum ausgeliehen</span><span class="sheet-check" id="fs-datum">✓</span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','rueckgabe')" style="border-top:0.5px solid var(--sep)">
+      <span>Rückgabedatum</span><span class="sheet-check" id="fs-rueckgabe"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','person')" style="border-top:0.5px solid var(--sep)">
+      <span>Verliehen an</span><span class="sheet-check" id="fs-person"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','verleiher')" style="border-top:0.5px solid var(--sep)">
+      <span>Verliehen von</span><span class="sheet-check" id="fs-verleiher"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','gegenstand')" style="border-top:0.5px solid var(--sep)">
+      <span>Gegenstand (A–Z)</span><span class="sheet-check" id="fs-gegenstand"></span>
+    </button>
+  </div>
+</div>
+
+<!-- ── OFFLINE SHEET ── -->
+<div id="offline-sheet" style="display:none">
+  <div class="offline-bg" onclick="hideOfflineSheet()"></div>
+  <div class="offline-card">
+    <h3>
+      <svg width="20" height="20" fill="none" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Offline-Modus
+    </h3>
+    <p>Du bist gerade nicht mit dem Internet verbunden. Die App funktioniert weiterhin mit den zuletzt geladenen Daten.<br><br>Alle Änderungen die du vornimmst werden lokal gespeichert und automatisch synchronisiert sobald wieder eine Verbindung zum Server besteht.</p>
+    <button class="offline-close" onclick="hideOfflineSheet()">Verstanden</button>
   </div>
 </div>
 
@@ -1248,57 +1301,5 @@
 
   document.addEventListener("DOMContentLoaded", () => init());
 </script>
-<!-- ── FILTER SHEET ── -->
-<div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;backdrop-filter:blur(2px)"></div>
-<div id="filter-sheet" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:101;max-width:430px;margin:0 auto;background:var(--surface);border-radius:20px 20px 0 0;padding:0 0 40px;transform:translateY(100%);transition:transform 0.3s cubic-bezier(.32,.72,0,1)">
-  <div style="width:36px;height:4px;background:var(--sep);border-radius:2px;margin:10px auto 4px"></div>
-  <div style="padding:12px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Status</div>
-  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
-    <button class="sheet-row" onclick="applyFilter('status','alle')">
-      <span>Alle</span><span class="sheet-check" id="fc-alle">✓</span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('status','offen')" style="border-top:0.5px solid var(--sep)">
-      <span>Offen</span><span class="sheet-check" id="fc-offen"></span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('status','zurueck')" style="border-top:0.5px solid var(--sep)">
-      <span>Zurück</span><span class="sheet-check" id="fc-zurueck"></span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('status','ueberfaellig')" style="border-top:0.5px solid var(--sep)">
-      <span style="color:var(--red)">Überfällig</span><span class="sheet-check" id="fc-ueberfaellig"></span>
-    </button>
-  </div>
-  <div style="padding:16px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sortierung</div>
-  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
-    <button class="sheet-row" onclick="applyFilter('sort','datum')">
-      <span>Datum ausgeliehen</span><span class="sheet-check" id="fs-datum">✓</span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('sort','rueckgabe')" style="border-top:0.5px solid var(--sep)">
-      <span>Rückgabedatum</span><span class="sheet-check" id="fs-rueckgabe"></span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('sort','person')" style="border-top:0.5px solid var(--sep)">
-      <span>Verliehen an</span><span class="sheet-check" id="fs-person"></span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('sort','verleiher')" style="border-top:0.5px solid var(--sep)">
-      <span>Verliehen von</span><span class="sheet-check" id="fs-verleiher"></span>
-    </button>
-    <button class="sheet-row" onclick="applyFilter('sort','gegenstand')" style="border-top:0.5px solid var(--sep)">
-      <span>Gegenstand (A–Z)</span><span class="sheet-check" id="fs-gegenstand"></span>
-    </button>
-  </div>
-</div>
-
-<!-- ── OFFLINE SHEET ── -->
-<div id="offline-sheet" style="display:none">
-  <div class="offline-bg" onclick="hideOfflineSheet()"></div>
-  <div class="offline-card">
-    <h3>
-      <svg width="20" height="20" fill="none" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Offline-Modus
-    </h3>
-    <p>Du bist gerade nicht mit dem Internet verbunden. Die App funktioniert weiterhin mit den zuletzt geladenen Daten.<br><br>Alle Änderungen die du vornimmst werden lokal gespeichert und automatisch synchronisiert sobald wieder eine Verbindung zum Server besteht.</p>
-    <button class="offline-close" onclick="hideOfflineSheet()">Verstanden</button>
-  </div>
-</div>
-
 </body>
 </html>
