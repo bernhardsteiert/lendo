@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Lendo" />
+  <meta name="theme-color" content="#f2f2f7" />
+  <title>Lendo</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2f2f7;
+      --surface: #ffffff;
+      --sep: rgba(60,60,67,0.12);
+      --accent: #007aff;
+      --text: #000;
+      --text2: rgba(60,60,67,0.6);
+      --text3: rgba(60,60,67,0.3);
+      --green: #34c759;
+      --red: #ff3b30;
+      --font: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+    }
+
+    html {
+      -webkit-tap-highlight-color: transparent;
+      background: #f2f2f7;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    svg { display: block; flex-shrink: 0; }
+
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+    @keyframes slideUp { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── SHARED INPUTS ── */
+    input[type=text], input[type=date] {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--font);
+      font-size: 15px;
+      color: var(--text);
+      -webkit-appearance: none;
+      min-width: 0;
+    }
+    input::placeholder { color: var(--text3); }
+    input[type=date]::-webkit-calendar-picker-indicator { opacity: 0.35; cursor: pointer; }
+
+    /* ── JOIN SCREEN ── */
+    #join-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top) 20px 40px;
+      background: var(--bg);
+    }
+
+    .join-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(145deg,#1c1c3a,#2c2c5e);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .join-title { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .join-sub { font-size: 15px; color: var(--text2); margin-bottom: 36px; }
+
+    .ios-group {
+      width: 100%;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .ios-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 10px;
+      position: relative;
+    }
+
+    .ios-row + .ios-row::before {
+      content:''; position: absolute; top:0; left:16px; right:0;
+      height: 0.5px; background: var(--sep);
+    }
+
+    .ios-row-label { font-size: 15px; min-width: 100px; flex-shrink: 0; }
+
+    .ios-row input[type=text] { text-align: right; }
+    .ios-row input[type=date] {
+      text-align: right;
+      width: 100%;
+      -webkit-appearance: none;
+      cursor: pointer;
+      min-height: 24px;
+    }
+
+    .hint { font-size: 13px; color: var(--text2); padding: 4px 4px 24px; text-align: center; line-height: 1.5; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      border: none; border-radius: 12px;
+      color: #fff; font-family: var(--font); font-size: 17px; font-weight: 600;
+      cursor: pointer; transition: opacity .15s;
+    }
+    .btn-primary:active { opacity: 0.75; }
+
+    .error-msg { color: var(--red); font-size: 13px; font-weight: 500; padding: 4px 0; }
+
+    /* ── MAIN SCREEN ── */
+    #main-screen { display: none; }
+
+    /* Nav sticky */
+    .nav {
+      background: rgba(242,242,247,0.94);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid var(--sep);
+      overflow: hidden;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    /* Large title area – animates height & opacity */
+    .nav-large {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 10px 16px 6px;
+      transform-origin: top left;
+      will-change: transform, opacity;
+    }
+
+    .large-title {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.05;
+    }
+
+    .large-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+    /* Small title – fades in */
+    .nav-small {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 0;
+      height: 44px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-small.visible { opacity: 1; pointer-events: auto; }
+
+    .nav-small-title { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
+
+    .nav-btns { display: flex; align-items: center; gap: 2px; }
+
+    .btn-nav {
+      background: none; border: none; color: var(--accent);
+      cursor: pointer; padding: 6px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background .15s;
+    }
+    .btn-nav:active { background: rgba(0,122,255,0.1); }
+
+    /* Scrollable list area */
+    #main-scroll { }
+
+    /* Search + Filter row */
+    .search-wrap {
+      padding: 10px 16px 6px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-bar {
+      flex: 1;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(118,118,128,0.12);
+      border-radius: 10px; padding: 7px 10px;
+    }
+
+    .search-bar svg { opacity: 0.4; flex-shrink: 0; }
+    .search-bar input { text-align: left; font-size: 15px; }
+
+    .search-clear {
+      background: rgba(60,60,67,0.3); border: none; border-radius: 50%;
+      width: 16px; height: 16px; color: #fff; cursor: pointer;
+      display: none; align-items: center; justify-content: center; padding: 0;
+      flex-shrink: 0;
+    }
+    .search-clear.show { display: flex; }
+
+    .btn-filter {
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(118,118,128,0.12);
+      border: none; border-radius: 10px;
+      padding: 7px 11px;
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      color: var(--text2); cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s, color .15s;
+      flex-shrink: 0;
+    }
+
+    .btn-filter.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-filter.active svg { opacity: 1; }
+
+    .sheet-row {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 16px; background: none; border: none;
+      font-family: var(--font); font-size: 16px; color: var(--text);
+      cursor: pointer; text-align: left;
+    }
+    .sheet-row:active { background: var(--bg); }
+    .sheet-check { color: var(--accent); font-size: 17px; font-weight: 600; min-width: 20px; text-align: right; }
+
+    /* Overdue banner */
+    .overdue-banner {
+      margin: 8px 16px 4px;
+      background: rgba(255,59,48,0.1);
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 13px; font-weight: 500; color: var(--red);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* List */
+    .list-wrap { padding: 8px 16px 80px; }
+
+    .ios-card-group {
+      background: var(--surface);
+      border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+    }
+
+    .ios-card {
+      padding: 14px 16px;
+      position: relative;
+      cursor: pointer;
+      transition: background .15s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ios-card:active { background: rgba(0,0,0,0.04); }
+
+    .ios-card + .ios-card::before {
+      content:''; position:absolute; top:0; left:16px; right:0;
+      height:0.5px; background: var(--sep);
+    }
+
+    .ios-card.overdue { background: rgba(255,59,48,0.03); }
+    .ios-card.returned .card-title { color: var(--text2); font-weight: 500; }
+    .ios-card.returned .card-meta { color: var(--text3); }
+    .ios-card.returned .card-meta b { color: var(--text2); font-weight: 400; }
+    .ios-card.returned .card-chevron { opacity: 0.4; }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+
+    .card-title { font-size: 17px; font-weight: 600; letter-spacing: -0.2px; }
+
+    .ios-badge {
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-overdue { background: rgba(255,59,48,0.12); color: var(--red); }
+    .badge-returned { background: rgba(52,199,89,0.12); color: var(--green); }
+
+    .card-meta { font-size: 14px; color: var(--text2); margin-bottom: 4px; }
+    .card-meta b { color: var(--text); font-weight: 500; }
+
+    .card-dates { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .date-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text2); }
+    .date-item.overdue { color: var(--red); font-weight: 500; }
+    .date-item.returned-date { color: var(--green); }
+
+    /* Check button */
+    .btn-card-check {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: rgba(60,60,67,0.1);
+      border: 1.5px solid rgba(60,60,67,0.2);
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(60,60,67,0.35);
+      transition: background .2s, color .2s, transform .15s;
+    }
+    .btn-card-check:active { transform: scale(0.9); }
+    .btn-card-check.done {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    /* Chevron */
+    .card-chevron { color: var(--text3); flex-shrink: 0; }
+
+    .empty-state { text-align: center; padding: 70px 0 40px; }
+    .empty-icon { display: flex; justify-content: center; margin-bottom: 10px; opacity: 0.3; }
+    .empty-state p { font-size: 15px; font-weight: 500; color: var(--text2); }
+    .empty-state span { font-size: 13px; color: var(--text3); display: block; margin-top: 4px; }
+
+    /* ── DETAIL / EDIT SCREEN ── */
+    #detail-screen { display: none; }
+
+    /* ── ADD / EDIT FORM SCREEN ── */
+    #add-screen { display: none; }
+
+    .form-nav {
+      background: rgba(242,242,247,0.94);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px;
+      padding-top: calc(14px + env(safe-area-inset-top));
+      border-bottom: 0.5px solid var(--sep);
+      position: sticky; top: 0; z-index: 30;
+    }
+
+    .btn-back {
+      background: none; border: none; color: var(--accent);
+      font-family: var(--font); font-size: 17px; cursor: pointer; padding: 0;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    .form-nav-title { font-size: 17px; font-weight: 600; }
+
+    .btn-text {
+      background: none; border: none; color: var(--accent);
+      font-family: var(--font); font-size: 17px; font-weight: 600; cursor: pointer; padding: 0;
+    }
+    .btn-text:active { opacity: 0.6; }
+    .btn-text:disabled { opacity: 0.4; }
+
+    .form-wrap { padding: 28px 16px 60px; }
+
+    .section-label {
+      font-size: 13px; color: var(--text2);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      padding: 0 4px; margin-bottom: 6px;
+    }
+
+    .section-label:not(:first-child) { margin-top: 24px; }
+
+    /* ── DETAIL SCREEN ── */
+    .detail-card {
+      background: var(--surface);
+      border-radius: 12px; overflow: hidden; margin: 16px;
+    }
+
+    .detail-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 16px; position: relative;
+    }
+
+    .detail-row + .detail-row::before {
+      content:''; position:absolute; top:0; left:16px; right:0;
+      height:0.5px; background:var(--sep);
+    }
+
+    .detail-label { font-size: 15px; color: var(--text2); }
+    .detail-value { font-size: 15px; font-weight: 500; color: var(--text); text-align: right; }
+
+    .detail-actions { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 10px; }
+
+    .btn-action {
+      width: 100%; padding: 14px; border: none; border-radius: 12px;
+      font-family: var(--font); font-size: 15px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: opacity .15s;
+    }
+    .btn-action:active { opacity: 0.7; }
+    .btn-action.green { background: rgba(52,199,89,0.12); color: var(--green); }
+    .btn-action.red { background: rgba(255,59,48,0.1); color: var(--red); }
+    .btn-action.blue { background: rgba(0,122,255,0.1); color: var(--accent); }
+
+    /* ── SETTINGS SCREEN ── */
+    #settings-screen { display: none; }
+
+    .settings-footer {
+      font-size: 13px; color: var(--text2);
+      text-align: center; padding: 20px 16px 0; line-height: 1.5;
+    }
+
+    .btn-danger-row {
+      display: flex; align-items: center; padding: 12px 16px;
+      background: none; border: none; width: 100%;
+      font-family: var(--font); font-size: 15px; color: var(--red);
+      cursor: pointer; text-align: left;
+    }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ic-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/>
+  </symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="ic-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"/>
+  </symbol>
+  <symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9 18 15 12 9 6"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/>
+  </symbol>
+  <symbol id="ic-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+  </symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </symbol>
+  <symbol id="ic-undo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>
+  </symbol>
+  <symbol id="ic-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </symbol>
+  <symbol id="ic-tray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+  </symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </symbol>
+  <symbol id="ic-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+  </symbol>
+  <symbol id="ic-xmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="ic-tray-fill" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M2 12l3.45-6.89A2 2 0 0 1 7.24 4h9.52a2 2 0 0 1 1.79 1.11L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" opacity=".15"/><polyline points="22 12 16 12 14 15 10 15 8 12 2 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ic-checklist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+  </symbol>
+  <symbol id="ic-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>
+  </symbol>
+  <symbol id="ic-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </symbol>
+</svg>
+
+<!-- ── JOIN ── -->
+<div id="join-screen">
+  <div class="join-icon">
+    <!-- Lendo Logo: L + grüner Kreispfeil -->
+    <svg width="60" height="60" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- L -->
+      <rect x="38" y="42" width="14" height="72" rx="7" fill="white"/>
+      <rect x="38" y="100" width="52" height="14" rx="7" fill="white"/>
+      <!-- Grüner Kreispfeil -->
+      <path d="M126 28 A22 22 0 1 0 148 50" stroke="#34c759" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <polygon points="148,38 148,62 130,50" fill="#34c759"/>
+    </svg>
+  </div>
+  <div class="join-title">Lendo</div>
+  <div class="join-sub">Gemeinsam den Überblick behalten</div>
+  <div class="ios-group" style="max-width:360px">
+    <div class="ios-row">
+      <span class="ios-row-label">Raum-Code</span>
+      <input type="text" id="code-input" placeholder="z.B. familie2024" autocapitalize="none" autocomplete="off" />
+    </div>
+  </div>
+  <div class="hint" style="max-width:360px">Gebt denselben Code auf beiden Geräten ein, um eure Liste zu teilen.</div>
+  <div id="join-error" class="error-msg" style="display:none;max-width:360px;width:100%"></div>
+  <div style="width:100%;max-width:360px">
+    <button class="btn-primary" onclick="joinRoom()">Loslegen</button>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div id="main-screen">
+  <div class="nav" id="main-nav">
+    <div class="nav-large" id="nav-large">
+      <div>
+        <div class="large-title">Lendo</div>
+        <div class="large-sub" id="room-label-large"></div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="showAdd(null)"><svg width="28" height="28" color="var(--accent)"><use href="#ic-plus"/></svg></button>
+        <button class="btn-nav" onclick="showSettings()"><svg width="22" height="22" color="var(--accent)"><use href="#ic-gear"/></svg></button>
+      </div>
+    </div>
+    <div class="nav-small" id="nav-small">
+      <div class="nav-small-title">Lendo</div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="showAdd(null)"><svg width="28" height="28" color="var(--accent)"><use href="#ic-plus"/></svg></button>
+        <button class="btn-nav" onclick="showSettings()"><svg width="22" height="22" color="var(--accent)"><use href="#ic-gear"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div id="main-scroll">
+    <div class="search-wrap">
+      <div class="search-bar">
+        <svg width="16" height="16"><use href="#ic-search"/></svg>
+        <input type="text" id="search-input" placeholder="Suchen" autocomplete="off" autocorrect="off" oninput="onSearch()" />
+        <button class="search-clear" id="search-clear" onclick="clearSearch()">
+          <svg width="8" height="8"><use href="#ic-xmark"/></svg>
+        </button>
+      </div>
+      <button class="btn-filter" id="btn-filter" onclick="openFilter()">
+        <svg width="15" height="15"><use href="#ic-filter"/></svg>
+        <span id="filter-label">Alle</span>
+      </button>
+    </div>
+    <div id="overdue-bar" style="display:none"></div>
+    <div class="list-wrap" id="item-list"></div>
+  </div>
+</div>
+
+<!-- ── DETAIL SCREEN ── -->
+<div id="detail-screen">
+  <div class="form-nav">
+    <button class="btn-back" onclick="showMain()">
+      <svg width="12" height="20" color="var(--accent)"><use href="#ic-chevron-left"/></svg> Zurück
+    </button>
+    <span class="form-nav-title" id="detail-title">Leihgabe</span>
+    <button class="btn-text" onclick="showAdd(currentDetailId)">Bearbeiten</button>
+  </div>
+  <div id="detail-body"></div>
+</div>
+
+<!-- ── ADD / EDIT ── -->
+<div id="add-screen">
+  <div class="form-nav">
+    <button class="btn-back" onclick="cancelAdd()">
+      <svg width="12" height="20" color="var(--accent)"><use href="#ic-chevron-left"/></svg> Zurück
+    </button>
+    <span class="form-nav-title" id="form-title">Neue Leihgabe</span>
+    <button class="btn-text" id="btn-save" onclick="saveItem()">Fertig</button>
+  </div>
+  <div class="form-wrap">
+    <p class="section-label">Gegenstand</p>
+    <div class="ios-group">
+      <div class="ios-row">
+        <span class="ios-row-label">Was</span>
+        <input type="text" id="f-item" placeholder="z.B. Bohrmaschine" />
+      </div>
+    </div>
+    <p class="section-label">Personen</p>
+    <div class="ios-group">
+      <div class="ios-row">
+        <span class="ios-row-label">Verliehen an</span>
+        <input type="text" id="f-person" placeholder="Name" />
+      </div>
+      <div class="ios-row">
+        <span class="ios-row-label">Verliehen von</span>
+        <input type="text" id="f-lender" placeholder="Name" />
+      </div>
+    </div>
+    <p class="section-label">Datum</p>
+    <div class="ios-group">
+      <div class="ios-row">
+        <span class="ios-row-label">Verliehen am</span>
+        <input type="date" id="f-lentdate" />
+      </div>
+      <div class="ios-row">
+        <span class="ios-row-label">Rückgabe bis</span>
+        <input type="date" id="f-returndate" />
+      </div>
+    </div>
+    <div id="add-error" class="error-msg" style="display:none;margin-top:10px"></div>
+  </div>
+</div>
+
+<!-- ── SETTINGS ── -->
+<div id="settings-screen">
+  <div class="form-nav">
+    <span style="width:70px"></span>
+    <span class="form-nav-title">Einstellungen</span>
+    <button class="btn-text" onclick="saveSettings()">Fertig</button>
+  </div>
+  <div class="form-wrap">
+    <p class="section-label">Raum</p>
+    <div class="ios-group">
+      <div class="ios-row">
+        <span class="ios-row-label">Raum-Code</span>
+        <input type="text" id="settings-code" placeholder="Code" autocapitalize="none" />
+      </div>
+    </div>
+    <p class="section-label" style="margin-top:6px;font-size:12px;text-transform:none;letter-spacing:0;color:var(--text2)">
+      Ändere den Code um einen anderen gemeinsamen Raum zu betreten.
+    </p>
+    <p class="section-label">Aktionen</p>
+    <div class="ios-group">
+      <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
+    </div>
+    <div class="settings-footer">Leihgaben · Daten gespeichert auf Firebase</div>
+  </div>
+</div>
+
+<script>
+  const FB = "https://verliehen-44d47-default-rtdb.europe-west1.firebasedatabase.app";
+  let roomCode = "", items = {}, filter = "offen", pollTimer = null, searchQ = "", editingId = null, currentDetailId = null;
+
+  // ── Icons ──
+  const IC = {
+    cal:   `<svg width="13" height="13" style="opacity:.4"><use href="#ic-calendar"/></svg>`,
+    clock: `<svg width="13" height="13" style="opacity:.4"><use href="#ic-clock"/></svg>`,
+    undo:  `<svg width="13" height="13"><use href="#ic-undo"/></svg>`,
+    alert: `<svg width="15" height="15"><use href="#ic-alert"/></svg>`,
+    tray:  `<svg width="44" height="44"><use href="#ic-tray"/></svg>`,
+    check: `<svg width="16" height="16"><use href="#ic-check"/></svg>`,
+    trash: `<svg width="16" height="16"><use href="#ic-trash"/></svg>`,
+    pencil:`<svg width="15" height="15"><use href="#ic-pencil"/></svg>`,
+    chev:  `<svg width="14" height="14" style="opacity:.3"><use href="#ic-chevron-right"/></svg>`,
+  };
+
+  // ── Helpers ──
+  const today = () => new Date().toISOString().split("T")[0];
+  const fmtDate = d => { if(!d) return "–"; const [y,m,day]=d.split("-"); return `${day}.${m}.${y}`; };
+  const isOverdue = i => !!(i.returnDate && !i.returned && new Date(i.returnDate) < new Date());
+  const daysDiff = d => Math.floor((new Date()-new Date(d))/86400000);
+  const genId = () => Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+  // ── Firebase ──
+  const fbGet = async p => { const r=await fetch(`${FB}/${p}.json`); return r.json(); };
+  const fbSet = async (p,d) => { await fetch(`${FB}/${p}.json`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}); };
+  const fbDel = async p => { await fetch(`${FB}/${p}.json`,{method:"DELETE"}); };
+
+  // ── Screen manager ──
+  const SCREENS = ["join-screen","main-screen","detail-screen","add-screen","settings-screen"];
+  function show(id) {
+    SCREENS.forEach(s => {
+      const el = document.getElementById(s);
+      el.style.display = "none";
+    });
+    const el = document.getElementById(id);
+    if (id === "join-screen") el.style.display = "flex";
+    else el.style.display = "block";
+  }
+
+  // ── Smooth collapsing large title ──
+  function initScroll() {
+    const scroll = document.getElementById("main-scroll");
+    const navLarge = document.getElementById("nav-large");
+    const navSmall = document.getElementById("nav-small");
+    const LARGE_H = 70; // approx height of large title section
+
+    scroll.addEventListener("scroll", () => {
+      const s = scroll.scrollTop;
+      // Fade & scale large title
+      const progress = Math.min(s / LARGE_H, 1);
+      navLarge.style.opacity = 1 - progress;
+      navLarge.style.transform = `translateY(${-progress * 10}px)`;
+      navLarge.style.pointerEvents = progress > 0.8 ? "none" : "auto";
+      // Fade in small title
+      navSmall.style.opacity = progress > 0.7 ? (progress - 0.7) / 0.3 : 0;
+      navSmall.style.pointerEvents = progress > 0.9 ? "auto" : "none";
+    }, { passive: true });
+  }
+
+  function showMain() {
+    show("main-screen");
+    renderList();
+    // reset scroll & title
+    const scroll = document.getElementById("main-scroll");
+    if (scroll) scroll.scrollTop = 0;
+    const navLarge = document.getElementById("nav-large");
+    const navSmall = document.getElementById("nav-small");
+    if (navLarge) { navLarge.style.opacity=1; navLarge.style.transform=""; navLarge.style.pointerEvents="auto"; }
+    if (navSmall) { navSmall.style.opacity=0; navSmall.style.pointerEvents="none"; }
+  }
+
+  // ── Join ──
+  async function joinRoom() {
+    const code = document.getElementById("code-input").value.trim().toLowerCase();
+    const err = document.getElementById("join-error");
+    if (code.length < 3) { err.textContent="Mindestens 3 Zeichen"; err.style.display="block"; return; }
+    err.style.display = "none";
+    await enterRoom(code);
+  }
+
+  let listEventsInited = false;
+  async function enterRoom(code) {
+    roomCode = code;
+    localStorage.setItem("leihgaben_room", code);
+    document.getElementById("room-label-large").textContent = "Raum: " + code;
+    await loadItems();
+    showMain();
+    initScroll();
+    if (!listEventsInited) { initListEvents(); listEventsInited = true; }
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(loadItems, 5000);
+  }
+
+  document.getElementById("code-input").addEventListener("keydown", e => { if(e.key==="Enter") joinRoom(); });
+
+  // ── Data ──
+  async function loadItems() {
+    try {
+      const data = await fbGet(`rooms/${roomCode}/items`);
+      const n = data || {};
+      if (JSON.stringify(n) !== JSON.stringify(items)) { items = n; renderList(); }
+    } catch(e) { console.error(e); }
+  }
+
+  // ── Add / Edit ──
+  function showAdd(id) {
+    editingId = id;
+    document.getElementById("form-title").textContent = id ? "Bearbeiten" : "Neue Leihgabe";
+    if (id && items[id]) {
+      const it = items[id];
+      document.getElementById("f-item").value = it.item;
+      document.getElementById("f-person").value = it.person;
+      document.getElementById("f-lender").value = it.lender;
+      document.getElementById("f-lentdate").value = it.lentDate || "";
+      document.getElementById("f-returndate").value = it.returnDate || "";
+    } else {
+      ["f-item","f-person","f-lender","f-returndate"].forEach(x => document.getElementById(x).value="");
+      document.getElementById("f-lentdate").value = today();
+    }
+    document.getElementById("add-error").style.display="none";
+    document.getElementById("btn-save").textContent="Fertig";
+    document.getElementById("btn-save").disabled=false;
+    show("add-screen");
+  }
+
+  function cancelAdd() {
+    if (editingId) showDetail(editingId);
+    else showMain();
+  }
+
+  async function saveItem() {
+    const item   = document.getElementById("f-item").value.trim();
+    const person = document.getElementById("f-person").value.trim();
+    const lender = document.getElementById("f-lender").value.trim();
+    const lentDate   = document.getElementById("f-lentdate").value;
+    const returnDate = document.getElementById("f-returndate").value;
+    const errEl = document.getElementById("add-error");
+    if (!item||!person||!lender) { errEl.textContent="Bitte alle Pflichtfelder ausfüllen"; errEl.style.display="block"; return; }
+    errEl.style.display="none";
+    const btn = document.getElementById("btn-save");
+    btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+    const id = editingId || genId();
+    const existing = editingId ? items[editingId] : {};
+    const newItem = { ...existing, id, item, person, lender, lentDate, returnDate,
+      returned: existing.returned||false, returnedDate: existing.returnedDate||null };
+    try {
+      await fbSet(`rooms/${roomCode}/items/${id}`, newItem);
+      items[id] = newItem;
+      if (editingId) showDetail(id);
+      else showMain();
+    } catch(e) { errEl.textContent="Fehler: "+e.message; errEl.style.display="block"; btn.disabled=false; btn.textContent="Fertig"; }
+  }
+
+  // ── Detail ──
+  function showDetail(id) {
+    currentDetailId = id;
+    const it = items[id];
+    if (!it) { showMain(); return; }
+    document.getElementById("detail-title").textContent = it.item;
+    const overdue = isOverdue(it);
+    const badge = overdue
+      ? `<span class="ios-badge badge-overdue">Überfällig</span>`
+      : it.returned
+      ? `<span class="ios-badge badge-returned">Zurück</span>`
+      : "";
+
+    let actions = "";
+    if (!it.returned) {
+      actions = `
+        <div class="detail-actions">
+          <button class="btn-action green" onclick="markReturned('${id}')">
+            ${IC.check} Als zurückbekommen markieren
+          </button>
+          <button class="btn-action red" onclick="confirmDelete('${id}')">
+            ${IC.trash} Löschen
+          </button>
+        </div>`;
+    } else {
+      actions = `
+        <div class="detail-actions">
+          <button class="btn-action red" onclick="confirmDelete('${id}')">
+            ${IC.trash} Löschen
+          </button>
+        </div>`;
+    }
+
+    document.getElementById("detail-body").innerHTML = `
+      <div style="padding:16px 16px 8px;display:flex;align-items:center;gap:8px">
+        <span style="font-size:22px;font-weight:700">${it.item}</span>
+        ${badge}
+      </div>
+      <div class="detail-card">
+        <div class="detail-row"><span class="detail-label">Verliehen an</span><span class="detail-value">${it.person}</span></div>
+        <div class="detail-row"><span class="detail-label">Verliehen von</span><span class="detail-value">${it.lender}</span></div>
+        <div class="detail-row"><span class="detail-label">Datum</span><span class="detail-value">${fmtDate(it.lentDate)}</span></div>
+        <div class="detail-row"><span class="detail-label">Rückgabe bis</span><span class="detail-value" style="color:${overdue?"var(--red)":"inherit"}">${it.returnDate ? fmtDate(it.returnDate) + (overdue ? ` (${daysDiff(it.returnDate)}d überfällig)` : "") : "–"}</span></div>
+        ${it.returned ? `<div class="detail-row"><span class="detail-label">Zurückbekommen</span><span class="detail-value" style="color:var(--green)">${fmtDate(it.returnedDate)}</span></div>` : ""}
+      </div>
+      ${actions}`;
+    show("detail-screen");
+  }
+
+  async function markReturned(id) {
+    items[id].returned = true;
+    items[id].returnedDate = today();
+    await fbSet(`rooms/${roomCode}/items/${id}`, items[id]);
+    showDetail(id);
+  }
+
+  function confirmDelete(id) {
+    if (confirm(`"${items[id]?.item}" wirklich löschen?`)) deleteItem(id);
+  }
+
+  async function deleteItem(id) {
+    await fbDel(`rooms/${roomCode}/items/${id}`);
+    delete items[id];
+    showMain();
+  }
+
+  // ── Filter / Search ──
+  let filterStatus = 'alle'; // alle|offen|zurueck|ueberfaellig
+  let filterSort = 'datum';  // datum|rueckgabe|person|verleiher|gegenstand
+
+  function openFilter() {
+    document.getElementById("filter-overlay").style.display = "block";
+    const sheet = document.getElementById("filter-sheet");
+    sheet.style.display = "block";
+    requestAnimationFrame(() => sheet.style.transform = "translateY(0)");
+    updateSheetChecks();
+  }
+
+  function closeFilter() {
+    const sheet = document.getElementById("filter-sheet");
+    sheet.style.transform = "translateY(100%)";
+    setTimeout(() => {
+      sheet.style.display = "none";
+      document.getElementById("filter-overlay").style.display = "none";
+    }, 300);
+  }
+
+  function updateSheetChecks() {
+    ['alle','offen','zurueck','ueberfaellig'].forEach(s =>
+      document.getElementById("fc-"+s).textContent = (filterStatus===s ? '✓' : ''));
+    ['datum','rueckgabe','person','verleiher','gegenstand'].forEach(s =>
+      document.getElementById("fs-"+s).textContent = (filterSort===s ? '✓' : ''));
+  }
+
+  function applyFilter(type, val) {
+    if (type === 'status') filterStatus = val;
+    if (type === 'sort') filterSort = val;
+    updateSheetChecks();
+    updateFilterBtn();
+    renderList();
+    closeFilter();
+  }
+
+  function updateFilterBtn() {
+    const btn = document.getElementById("btn-filter");
+    const lbl = document.getElementById("filter-label");
+    const active = filterStatus !== 'alle' || filterSort !== 'datum';
+    if (btn) btn.classList.toggle("active", active);
+    if (lbl) {
+      if (filterStatus !== 'alle') {
+        const labels = {offen:'Offen',zurueck:'Zurück',ueberfaellig:'Überfällig'};
+        lbl.textContent = labels[filterStatus];
+      } else lbl.textContent = 'Filter';
+    }
+  }
+
+  function onSearch() {
+    const q = document.getElementById("search-input").value;
+    searchQ = q.trim().toLowerCase();
+    document.getElementById("search-clear").classList.toggle("show", q.length>0);
+    renderList();
+  }
+
+  function clearSearch() {
+    document.getElementById("search-input").value="";
+    searchQ="";
+    document.getElementById("search-clear").classList.remove("show");
+    renderList();
+  }
+
+  function hl(text, q) {
+    if (!q) return text;
+    const esc = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return text.replace(new RegExp(`(${esc})`,'gi'),'<mark style="background:rgba(255,214,10,0.5);border-radius:2px;padding:0 1px">$1</mark>');
+  }
+
+  // ── Render ──
+  function renderList() {
+    let all = Object.values(items);
+
+    // Sort
+    all.sort((a,b) => {
+      if (filterSort === 'datum') return b.id.localeCompare(a.id);
+      if (filterSort === 'rueckgabe') return (a.returnDate||'9999').localeCompare(b.returnDate||'9999');
+      if (filterSort === 'person') return (a.person||'').localeCompare(b.person||'');
+      if (filterSort === 'verleiher') return (a.lender||'').localeCompare(b.lender||'');
+      if (filterSort === 'gegenstand') return (a.item||'').localeCompare(b.item||'');
+      return 0;
+    });
+
+    const overdueItems = all.filter(isOverdue);
+    const bar = document.getElementById("overdue-bar");
+    if (overdueItems.length > 0) {
+      bar.style.display="flex"; bar.className="overdue-banner";
+      bar.innerHTML=`${IC.alert} ${overdueItems.length} Leihgabe${overdueItems.length>1?"n":""} überfällig`;
+    } else bar.style.display="none";
+
+    // Filter Status
+    let filtered = all;
+    if (filterStatus === 'offen') filtered = all.filter(i => !i.returned);
+    if (filterStatus === 'zurueck') filtered = all.filter(i => i.returned);
+    if (filterStatus === 'ueberfaellig') filtered = all.filter(isOverdue);
+
+    // Suche
+    if (searchQ) filtered = filtered.filter(i =>
+      i.item.toLowerCase().includes(searchQ)||
+      i.person.toLowerCase().includes(searchQ)||
+      i.lender.toLowerCase().includes(searchQ)
+    );
+
+    const list = document.getElementById("item-list");
+    if (!filtered.length) {
+      list.innerHTML = searchQ
+        ? `<div class="empty-state"><div class="empty-icon">${IC.tray}</div><p>Keine Ergebnisse</p><span>für „${searchQ}"</span></div>`
+        : `<div class="empty-state"><div class="empty-icon">${IC.tray}</div><p>Keine Einträge</p><span>Tippe auf + um etwas hinzuzufügen</span></div>`;
+      return;
+    }
+
+    list.innerHTML = `<div class="ios-card-group">` + filtered.map(item => {
+      const overdue = isOverdue(item);
+      const cls = "ios-card"+(overdue?" overdue":item.returned?" returned":"");
+      const badge = overdue ? `<span class="ios-badge badge-overdue">Überfällig</span>` : "";
+
+      const dates = [
+        item.lentDate ? `<span class="date-item">${IC.cal} ${fmtDate(item.lentDate)}</span>` : "",
+        item.returnDate && !item.returned ? `<span class="date-item${overdue?" overdue":""}">${IC.clock} bis ${fmtDate(item.returnDate)}${overdue?` (${daysDiff(item.returnDate)}d)`:""}</span>` : "",
+        item.returned && item.returnedDate ? `<span class="date-item returned-date">${IC.undo} ${fmtDate(item.returnedDate)}</span>` : "",
+      ].filter(Boolean).join("");
+
+      const checkBtn = `<button class="btn-card-check ${item.returned?'done':''}" data-toggle="${item.id}">
+           <svg width="16" height="16"><use href="#ic-check"/></svg>
+         </button>`;
+
+      return `<div class="${cls}" data-detail="${item.id}">
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">${hl(item.item,searchQ)}</span>
+            ${badge}
+          </div>
+          <div class="card-meta">an <b>${hl(item.person,searchQ)}</b> &nbsp;·&nbsp; von <b>${hl(item.lender,searchQ)}</b></div>
+          ${dates ? `<div class="card-dates">${dates}</div>` : ""}
+        </div>
+        ${checkBtn}
+        <div class="card-chevron"><svg width="14" height="14"><use href="#ic-chevron-right"/></svg></div>
+      </div>`;
+    }).join("") + `</div>`;
+  }
+
+  // Event-Delegation einmalig setzen
+  function initListEvents() {
+    document.getElementById("item-list").addEventListener("click", function(e) {
+      const toggleBtn = e.target.closest("[data-toggle]");
+      if (toggleBtn) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        markReturnedFromList(toggleBtn.dataset.toggle);
+        return;
+      }
+      const row = e.target.closest("[data-detail]");
+      if (row) showDetail(row.dataset.detail);
+    });
+  }
+
+  async function markReturnedFromList(id) {
+    if (items[id].returned) {
+      // Wieder auf offen setzen
+      items[id].returned = false;
+      items[id].returnedDate = null;
+    } else {
+      items[id].returned = true;
+      items[id].returnedDate = today();
+    }
+    await fbSet(`rooms/${roomCode}/items/${id}`, items[id]);
+    renderList();
+  }
+
+  // ── Settings ──
+  function showSettings() {
+    document.getElementById("settings-code").value = roomCode;
+    show("settings-screen");
+  }
+
+  async function saveSettings() {
+    const newCode = document.getElementById("settings-code").value.trim().toLowerCase();
+    if (newCode.length < 3 || newCode === roomCode) { showMain(); return; }
+    if (pollTimer) clearInterval(pollTimer);
+    items = {};
+    await enterRoom(newCode);
+  }
+
+  function confirmLeave() {
+    if (confirm("Raum-Code löschen und abmelden?")) {
+      if (pollTimer) clearInterval(pollTimer);
+      localStorage.removeItem("leihgaben_room");
+      roomCode=""; items={};
+      document.getElementById("code-input").value="";
+      show("join-screen");
+    }
+  }
+
+  async function init() {
+    const saved = localStorage.getItem("leihgaben_room");
+    if (saved) await enterRoom(saved);
+  }
+
+  init();
+</script>
+<!-- ── FILTER SHEET ── -->
+<div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;backdrop-filter:blur(2px)"></div>
+<div id="filter-sheet" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:101;max-width:430px;margin:0 auto;background:var(--surface);border-radius:20px 20px 0 0;padding:0 0 40px;transform:translateY(100%);transition:transform 0.3s cubic-bezier(.32,.72,0,1)">
+  <div style="width:36px;height:4px;background:var(--sep);border-radius:2px;margin:10px auto 4px"></div>
+  <div style="padding:12px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Status</div>
+  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
+    <button class="sheet-row" onclick="applyFilter('status','alle')">
+      <span>Alle</span><span class="sheet-check" id="fc-alle">✓</span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','offen')" style="border-top:0.5px solid var(--sep)">
+      <span>Offen</span><span class="sheet-check" id="fc-offen"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','zurueck')" style="border-top:0.5px solid var(--sep)">
+      <span>Zurück</span><span class="sheet-check" id="fc-zurueck"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('status','ueberfaellig')" style="border-top:0.5px solid var(--sep)">
+      <span style="color:var(--red)">Überfällig</span><span class="sheet-check" id="fc-ueberfaellig"></span>
+    </button>
+  </div>
+  <div style="padding:16px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Sortierung</div>
+  <div style="background:var(--surface);border-radius:12px;margin:0 16px;overflow:hidden;border:0.5px solid var(--sep)">
+    <button class="sheet-row" onclick="applyFilter('sort','datum')">
+      <span>Datum ausgeliehen</span><span class="sheet-check" id="fs-datum">✓</span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','rueckgabe')" style="border-top:0.5px solid var(--sep)">
+      <span>Rückgabedatum</span><span class="sheet-check" id="fs-rueckgabe"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','person')" style="border-top:0.5px solid var(--sep)">
+      <span>Verliehen an</span><span class="sheet-check" id="fs-person"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','verleiher')" style="border-top:0.5px solid var(--sep)">
+      <span>Verliehen von</span><span class="sheet-check" id="fs-verleiher"></span>
+    </button>
+    <button class="sheet-row" onclick="applyFilter('sort','gegenstand')" style="border-top:0.5px solid var(--sep)">
+      <span>Gegenstand (A–Z)</span><span class="sheet-check" id="fs-gegenstand"></span>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
