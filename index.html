@@ -580,7 +580,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.1</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.2</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -715,7 +715,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.1<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.2<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -762,34 +762,16 @@
 
   // ── Smooth collapsing large title ──
   function initScroll() {
-    const scroll = document.getElementById("main-scroll");
-    const navLarge = document.getElementById("nav-large");
+    // Collapsing header deaktiviert
     const navSmall = document.getElementById("nav-small");
-    const LARGE_H = 70; // approx height of large title section
-
-    scroll.addEventListener("scroll", () => {
-      const s = scroll.scrollTop;
-      // Fade & scale large title
-      const progress = Math.min(s / LARGE_H, 1);
-      navLarge.style.opacity = 1 - progress;
-      navLarge.style.transform = `translateY(${-progress * 10}px)`;
-      navLarge.style.pointerEvents = progress > 0.8 ? "none" : "auto";
-      // Fade in small title
-      navSmall.style.opacity = progress > 0.7 ? (progress - 0.7) / 0.3 : 0;
-      navSmall.style.pointerEvents = progress > 0.9 ? "auto" : "none";
-    }, { passive: true });
+    if (navSmall) navSmall.style.display = "none";
   }
 
   function showMain() {
     show("main-screen");
     renderList();
-    // reset scroll & title
     const scroll = document.getElementById("main-scroll");
     if (scroll) scroll.scrollTop = 0;
-    const navLarge = document.getElementById("nav-large");
-    const navSmall = document.getElementById("nav-small");
-    if (navLarge) { navLarge.style.opacity=1; navLarge.style.transform=""; navLarge.style.pointerEvents="auto"; }
-    if (navSmall) { navSmall.style.opacity=0; navSmall.style.pointerEvents="none"; }
   }
 
   // ── Join ──
@@ -1146,16 +1128,9 @@
     const btn = document.querySelector(`[data-toggle="${id}"]`);
     if (btn) btn.classList.toggle("done", returned);
 
-    // Karte und Text sofort anpassen
+    // Karte: nur CSS-Klasse, keine inline styles
     const card = document.querySelector(`[data-detail="${id}"]`);
-    if (card) {
-      card.style.transition = "opacity 0.3s";
-      card.style.opacity = returned ? "0.55" : "1";
-      const title = card.querySelector(".card-title");
-      const meta = card.querySelector(".card-meta");
-      if (title) { title.style.transition = "color 0.3s"; title.style.color = returned ? "var(--text2)" : ""; }
-      if (meta) { meta.style.transition = "color 0.3s"; meta.style.opacity = returned ? "0.6" : "1"; }
-    }
+    if (card) card.classList.toggle("returned", returned);
 
     await fbSetSafe(`rooms/${roomCode}/items/${id}`, items[id]);
   }
@@ -1256,7 +1231,7 @@
   init();
 </script>
 <!-- ── FILTER SHEET ── -->
-<div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;backdrop-filter:blur(2px)"></div>
+<div id="filter-overlay" onclick="closeFilter()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:100"></div>
 <div id="filter-sheet" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:101;max-width:430px;margin:0 auto;background:var(--surface);border-radius:20px 20px 0 0;padding:0 0 40px;transform:translateY(100%);transition:transform 0.3s cubic-bezier(.32,.72,0,1)">
   <div style="width:36px;height:4px;background:var(--sep);border-radius:2px;margin:10px auto 4px"></div>
   <div style="padding:12px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Status</div>
