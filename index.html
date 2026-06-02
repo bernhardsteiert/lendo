@@ -580,7 +580,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.0</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.1</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -600,9 +600,13 @@
     <div class="nav-large" id="nav-large">
       <div>
         <div class="large-title">Lendo</div>
-        <div class="large-sub" id="room-label-large"></div>
       </div>
       <div class="nav-btns">
+        <!-- Offline Indikator – nur sichtbar wenn offline -->
+        <div id="offline-indicator" style="display:none;align-items:center;gap:4px;margin-right:4px">
+          <svg width="16" height="16" fill="none" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          <button class="offline-info-btn" onclick="showOfflineSheet()" style="border-color:#ff9500;color:#ff9500">i</button>
+        </div>
         <button class="btn-nav" onclick="showAdd(null)"><svg width="28" height="28" color="var(--accent)"><use href="#ic-plus"/></svg></button>
         <button class="btn-nav" onclick="showSettings()"><svg width="22" height="22" color="var(--accent)"><use href="#ic-gear"/></svg></button>
       </div>
@@ -610,6 +614,10 @@
     <div class="nav-small" id="nav-small">
       <div class="nav-small-title">Lendo</div>
       <div class="nav-btns">
+        <div id="offline-indicator-small" style="display:none;align-items:center;gap:4px;margin-right:4px">
+          <svg width="14" height="14" fill="none" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          <button class="offline-info-btn" onclick="showOfflineSheet()" style="border-color:#ff9500;color:#ff9500">i</button>
+        </div>
         <button class="btn-nav" onclick="showAdd(null)"><svg width="28" height="28" color="var(--accent)"><use href="#ic-plus"/></svg></button>
         <button class="btn-nav" onclick="showSettings()"><svg width="22" height="22" color="var(--accent)"><use href="#ic-gear"/></svg></button>
       </div>
@@ -711,7 +719,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.0<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.1<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1174,13 +1182,12 @@
   let pendingChanges = JSON.parse(localStorage.getItem("lendo_pending") || "{}");
 
   function updateOnlineStatus() {
-    const banner = document.getElementById("offline-banner");
-    if (navigator.onLine) {
-      banner.classList.remove("show");
-      syncPendingChanges();
-    } else {
-      banner.classList.add("show");
-    }
+    const show = !navigator.onLine;
+    const ind = document.getElementById("offline-indicator");
+    const indSmall = document.getElementById("offline-indicator-small");
+    if (ind) ind.style.display = show ? "flex" : "none";
+    if (indSmall) indSmall.style.display = show ? "flex" : "none";
+    if (!show) syncPendingChanges();
   }
 
   window.addEventListener("online", updateOnlineStatus);
@@ -1272,13 +1279,6 @@
       <span>Gegenstand (A–Z)</span><span class="sheet-check" id="fs-gegenstand"></span>
     </button>
   </div>
-</div>
-
-<!-- ── OFFLINE BANNER ── -->
-<div id="offline-banner">
-  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-  <span style="flex:1">Offline – Änderungen werden lokal gespeichert</span>
-  <button class="offline-info-btn" onclick="showOfflineSheet()">i</button>
 </div>
 
 <!-- ── OFFLINE SHEET ── -->
