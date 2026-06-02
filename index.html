@@ -999,7 +999,6 @@
       i.lender.toLowerCase().includes(searchQ)
     );
 
-    const list = document.getElementById("item-list");
     if (!filtered.length) {
       list.innerHTML = searchQ
         ? `<div class="empty-state"><div class="empty-icon">${IC.tray}</div><p>Keine Ergebnisse</p><span>für „${searchQ}"</span></div>`
