@@ -528,7 +528,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.2</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.3</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -659,7 +659,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 1.2<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 1.3<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1053,15 +1053,39 @@
 
   async function markReturnedFromList(id) {
     if (items[id].returned) {
-      // Wieder auf offen setzen
       items[id].returned = false;
       items[id].returnedDate = null;
     } else {
       items[id].returned = true;
       items[id].returnedDate = today();
     }
+    const returned = items[id].returned;
+
+    // Nur Button animieren
+    const btn = document.querySelector(`[data-toggle="${id}"]`);
+    if (btn) {
+      btn.style.transform = "scale(0.8)";
+      btn.style.transition = "transform 0.12s, background 0.2s, border-color 0.2s, color 0.2s";
+      setTimeout(() => {
+        btn.classList.toggle("done", returned);
+        btn.style.transform = "scale(1.2)";
+        setTimeout(() => { btn.style.transform = "scale(1)"; }, 100);
+      }, 120);
+    }
+
+    // Karte leicht dimmen/aufhellen
+    const card = document.querySelector(`[data-detail="${id}"]`);
+    if (card) {
+      card.style.transition = "opacity 0.3s";
+      card.style.opacity = returned ? "0.55" : "1";
+      const title = card.querySelector(".card-title");
+      if (title) {
+        title.style.transition = "color 0.3s";
+        title.style.color = returned ? "var(--text2)" : "";
+      }
+    }
+
     await fbSet(`rooms/${roomCode}/items/${id}`, items[id]);
-    renderList();
   }
 
   // ── Settings ──
