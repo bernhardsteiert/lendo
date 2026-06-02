@@ -196,21 +196,9 @@
 
     /* Animations */
     @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-    @keyframes slideUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
 
     #item-list { transition: opacity 0.2s ease; }
     #item-list.fading { opacity: 0; }
-
-    .ios-card {
-      animation: slideUp 0.22s ease both;
-    }
-    /* Stagger cards */
-    .ios-card:nth-child(1) { animation-delay: 0ms }
-    .ios-card:nth-child(2) { animation-delay: 30ms }
-    .ios-card:nth-child(3) { animation-delay: 55ms }
-    .ios-card:nth-child(4) { animation-delay: 75ms }
-    .ios-card:nth-child(5) { animation-delay: 90ms }
-    .ios-card:nth-child(n+6) { animation-delay: 100ms }
 
     /* Scrollable list area */
     #main-scroll { }
@@ -553,7 +541,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.8</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.9</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -684,7 +672,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 1.8<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 1.9<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -790,7 +778,24 @@
     try {
       const data = await fbGet(`rooms/${roomCode}/items`);
       const n = data || {};
-      if (JSON.stringify(n) !== JSON.stringify(items)) { items = n; renderList(); }
+      // Nur neu rendern wenn sich Keys geändert haben (neue/gelöschte Items)
+      // oder wenn ein anderes Gerät Änderungen gemacht hat
+      const oldKeys = Object.keys(items).sort().join(',');
+      const newKeys = Object.keys(n).sort().join(',');
+      const keysChanged = oldKeys !== newKeys;
+      // Prüfe ob fremde Änderungen kamen (nicht von uns selbst getoggled)
+      const foreignChange = Object.keys(n).some(k => {
+        if (!items[k]) return true; // neues Item
+        // Änderung an Feldern die nicht returned/returnedDate sind
+        return ['item','person','lender','lentDate','returnDate'].some(f => items[k][f] !== n[k][f]);
+      });
+      if (keysChanged || foreignChange) {
+        items = n;
+        renderList();
+      } else {
+        // Nur items-Objekt aktualisieren ohne re-render
+        items = n;
+      }
     } catch(e) { console.error(e); }
   }
 
@@ -1086,20 +1091,17 @@
 
     // Toggle animieren
     const btn = document.querySelector(`[data-toggle="${id}"]`);
-    if (btn) {
-      btn.classList.toggle("done", returned);
-    }
+    if (btn) btn.classList.toggle("done", returned);
 
-    // Karte leicht dimmen/aufhellen
+    // Karte und Text sofort anpassen
     const card = document.querySelector(`[data-detail="${id}"]`);
     if (card) {
       card.style.transition = "opacity 0.3s";
       card.style.opacity = returned ? "0.55" : "1";
       const title = card.querySelector(".card-title");
-      if (title) {
-        title.style.transition = "color 0.3s";
-        title.style.color = returned ? "var(--text2)" : "";
-      }
+      const meta = card.querySelector(".card-meta");
+      if (title) { title.style.transition = "color 0.3s"; title.style.color = returned ? "var(--text2)" : ""; }
+      if (meta) { meta.style.transition = "color 0.3s"; meta.style.opacity = returned ? "0.6" : "1"; }
     }
 
     await fbSet(`rooms/${roomCode}/items/${id}`, items[id]);
