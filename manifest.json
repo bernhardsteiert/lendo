@@ -1,0 +1,10 @@
+{
+  "name": "Lendo",
+  "short_name": "Lendo",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f2f7",
+  "theme_color": "#f2f2f7",
+  "start_url": "/index.html",
+  "icons": []
+}
