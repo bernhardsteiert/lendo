@@ -294,10 +294,9 @@
       height:0.5px; background: var(--sep);
     }
 
-    .ios-card.overdue { background: rgba(255,59,48,0.03); }
+    .ios-card.overdue { background: rgba(255,59,48,0.04); }
+    .ios-card.returned { background: rgba(52,199,89,0.05); }
     .ios-card.returned .card-title { color: var(--text2); font-weight: 500; }
-    .ios-card.returned .card-meta { color: var(--text3); }
-    .ios-card.returned .card-meta b { color: var(--text2); font-weight: 400; }
     .ios-card.returned .card-chevron { opacity: 0.4; }
 
     .card-body { flex: 1; min-width: 0; }
@@ -580,7 +579,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.2</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.3</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -715,7 +714,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.2<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.3<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1074,7 +1073,9 @@
     list.innerHTML = `<div class="ios-card-group">` + filtered.map(item => {
       const overdue = isOverdue(item);
       const cls = "ios-card"+(overdue?" overdue":item.returned?" returned":"");
-      const badge = overdue ? `<span class="ios-badge badge-overdue">Überfällig</span>` : "";
+      const badge = overdue
+        ? `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" style="flex-shrink:0"><circle cx="12" cy="12" r="10" fill="rgba(255,59,48,0.15)"/><line x1="12" y1="7" x2="12" y2="13" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="var(--red)"/></svg>`
+        : "";
 
       const dates = [
         item.lentDate ? `<span class="date-item">${IC.cal} ${fmtDate(item.lentDate)}</span>` : "",
@@ -1090,8 +1091,6 @@
             <span class="card-title">${hl(item.item,searchQ)}</span>
             ${badge}
           </div>
-          <div class="card-meta">an <b>${hl(item.person,searchQ)}</b> &nbsp;·&nbsp; von <b>${hl(item.lender,searchQ)}</b></div>
-          ${dates ? `<div class="card-dates">${dates}</div>` : ""}
         </div>
         ${checkBtn}
         <div class="card-chevron"><svg width="14" height="14"><use href="#ic-chevron-right"/></svg></div>
