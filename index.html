@@ -270,40 +270,45 @@
     }
 
     /* List */
-    .list-wrap { padding: 8px 16px 80px; }
+    .list-wrap { padding: 0 0 80px; }
 
     .ios-card-group {
       background: var(--surface);
-      border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+      border-radius: 0;
+      overflow: hidden;
+      border-top: 0.5px solid var(--sep);
+      border-bottom: 0.5px solid var(--sep);
     }
 
     .ios-card {
-      padding: 14px 16px;
+      padding: 11px 20px;
       position: relative;
       cursor: pointer;
       transition: background .15s;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      min-height: 44px;
     }
 
     .ios-card:active { background: rgba(0,0,0,0.04); }
 
     .ios-card + .ios-card::before {
-      content:''; position:absolute; top:0; left:16px; right:0;
+      content:''; position:absolute; top:0; left:20px; right:0;
       height:0.5px; background: var(--sep);
     }
 
     .ios-card.overdue { background: rgba(255,59,48,0.04); }
-    .ios-card.returned { background: rgba(52,199,89,0.05); }
-    .ios-card.returned .card-title { color: var(--text2); font-weight: 500; }
-    .ios-card.returned .card-chevron { opacity: 0.4; }
+    .ios-card.overdue .card-title { color: rgba(180,30,20,0.85); }
+    .ios-card.returned { background: rgba(52,199,89,0.04); }
+    .ios-card.returned .card-title { color: var(--text2); font-weight: 400; }
+    .ios-card.returned .card-chevron { opacity: 0.3; }
 
     .card-body { flex: 1; min-width: 0; }
 
-    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; }
 
-    .card-title { font-size: 17px; font-weight: 600; letter-spacing: -0.2px; }
+    .card-title { font-size: 19px; font-weight: 400; letter-spacing: -0.3px; }
 
     .ios-badge {
       font-size: 11px; font-weight: 600;
@@ -579,7 +584,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.3</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.4</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -714,7 +719,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.3<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.4<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1074,7 +1079,7 @@
       const overdue = isOverdue(item);
       const cls = "ios-card"+(overdue?" overdue":item.returned?" returned":"");
       const badge = overdue
-        ? `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" style="flex-shrink:0"><circle cx="12" cy="12" r="10" fill="rgba(255,59,48,0.15)"/><line x1="12" y1="7" x2="12" y2="13" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="var(--red)"/></svg>`
+        ? `<svg width="20" height="20" fill="none" viewBox="0 0 24 24" style="flex-shrink:0"><circle cx="12" cy="12" r="10" fill="rgba(255,59,48,0.12)"/><line x1="12" y1="7" x2="12" y2="13" stroke="var(--red)" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.4" fill="var(--red)"/></svg>`
         : "";
 
       const dates = [
