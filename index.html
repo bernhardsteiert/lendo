@@ -7,6 +7,20 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lendo" />
   <meta name="screen-orientation" content="portrait" />
+  <style>
+    @media screen and (orientation: landscape) {
+      html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  </style>
   <meta name="theme-color" content="#f2f2f7" />
   <title>Lendo</title>
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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" />
@@ -529,7 +543,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.5</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.6</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -660,7 +674,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 1.5<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 1.6<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
