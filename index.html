@@ -331,21 +331,45 @@
     .date-item.overdue { color: var(--red); font-weight: 500; }
     .date-item.returned-date { color: var(--green); }
 
-    /* Check button */
-    .btn-card-check {
-      width: 32px; height: 32px; flex-shrink: 0;
-      background: rgba(60,60,67,0.1);
-      border: 1.5px solid rgba(60,60,67,0.2);
-      border-radius: 50%; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(60,60,67,0.35);
-      transition: background .2s, color .2s, transform .15s;
+    /* iOS Toggle Switch */
+    .ios-toggle {
+      width: 51px; height: 31px; flex-shrink: 0;
+      background: rgba(120,120,128,0.16);
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      transition: background 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn-card-check:active { transform: scale(0.9); }
-    .btn-card-check.done {
+
+    .ios-toggle.done {
       background: var(--green);
-      border-color: var(--green);
-      color: #fff;
+    }
+
+    .ios-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 27px; height: 27px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      transition: transform 0.28s cubic-bezier(.36,.07,.19,.97);
+    }
+
+    .ios-toggle.done::after {
+      transform: translateX(20px);
+    }
+
+    .ios-toggle:active::after {
+      width: 32px;
+    }
+
+    .ios-toggle.done:active::after {
+      transform: translateX(15px);
+      width: 32px;
     }
 
     /* Chevron */
@@ -529,7 +553,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.7</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 1.8</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -660,7 +684,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 1.7<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 1.8<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -1018,9 +1042,7 @@
         item.returned && item.returnedDate ? `<span class="date-item returned-date">${IC.undo} ${fmtDate(item.returnedDate)}</span>` : "",
       ].filter(Boolean).join("");
 
-      const checkBtn = `<button class="btn-card-check ${item.returned?'done':''}" data-toggle="${item.id}">
-           <svg width="16" height="16"><use href="#ic-check"/></svg>
-         </button>`;
+      const checkBtn = `<button class="ios-toggle ${item.returned?'done':''}" data-toggle="${item.id}"></button>`;
 
       return `<div class="${cls}" data-detail="${item.id}">
         <div class="card-body">
@@ -1062,16 +1084,10 @@
     }
     const returned = items[id].returned;
 
-    // Nur Button animieren
+    // Toggle animieren
     const btn = document.querySelector(`[data-toggle="${id}"]`);
     if (btn) {
-      btn.style.transform = "scale(0.8)";
-      btn.style.transition = "transform 0.12s, background 0.2s, border-color 0.2s, color 0.2s";
-      setTimeout(() => {
-        btn.classList.toggle("done", returned);
-        btn.style.transform = "scale(1.2)";
-        setTimeout(() => { btn.style.transform = "scale(1)"; }, 100);
-      }, 120);
+      btn.classList.toggle("done", returned);
     }
 
     // Karte leicht dimmen/aufhellen
