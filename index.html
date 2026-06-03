@@ -269,18 +269,17 @@
     }
 
     /* List */
-    .list-wrap { padding: 0 0 80px; }
+    .list-wrap { padding: 8px 16px 80px; }
 
     .ios-card-group {
       background: var(--surface);
-      border-radius: 0;
+      border-radius: 12px;
       overflow: hidden;
-      border-top: 0.5px solid var(--sep);
-      border-bottom: 0.5px solid var(--sep);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .ios-card {
-      padding: 11px 20px;
+      padding: 12px 16px;
       position: relative;
       cursor: pointer;
       transition: background .15s;
@@ -293,7 +292,7 @@
     .ios-card:active { background: rgba(0,0,0,0.04); }
 
     .ios-card + .ios-card::before {
-      content:''; position:absolute; top:0; left:20px; right:0;
+      content:''; position:absolute; top:0; left:16px; right:0;
       height:0.5px; background: var(--sep);
     }
 
@@ -366,7 +365,7 @@
     }
 
     /* Chevron */
-    .card-chevron { color: var(--text3); flex-shrink: 0; }
+    .card-chevron { color: var(--text2); flex-shrink: 0; }
 
     .empty-state { text-align: center; padding: 70px 0 40px; }
     .empty-icon { display: flex; justify-content: center; margin-bottom: 10px; opacity: 0.3; }
@@ -468,6 +467,49 @@
       border-radius: 50%; animation: spin .7s linear infinite;
     }
 
+
+    /* ── Screen Transitions ── */
+    .screen-slide {
+      transition: transform 0.32s cubic-bezier(.32,.72,0,1), opacity 0.32s ease;
+    }
+    .slide-out-left {
+      transform: translateX(-30%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .slide-in-right {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    .slide-out-right {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .slide-in-left {
+      transform: translateX(-30%);
+      opacity: 0;
+    }
+
+    /* ── Personen Vorschläge ── */
+    .person-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 16px 4px;
+    }
+    .person-chip-btn {
+      background: rgba(0,122,255,0.08);
+      border: none;
+      border-radius: 16px;
+      padding: 5px 12px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .person-chip-btn:active { background: rgba(0,122,255,0.18); }
     /* ── OFFLINE ── */
     .offline-dot {
       display: none;
@@ -575,7 +617,7 @@
   </div>
   <div class="join-title">Lendo</div>
   <div class="join-sub">Gemeinsam den Überblick behalten</div>
-  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.8</div>
+  <div style="font-size:11px;color:var(--text3);margin-top:-20px;margin-bottom:28px">Version 2.9</div>
   <div class="ios-group" style="max-width:360px">
     <div class="ios-row">
       <span class="ios-row-label">Raum-Code</span>
@@ -655,32 +697,36 @@
     <button class="btn-text" id="btn-save" onclick="saveItem()">Fertig</button>
   </div>
   <div class="form-wrap">
-    <p class="section-label">Gegenstand</p>
+    <p class="section-label">Gegenstand <span style="color:var(--red)">*</span></p>
     <div class="ios-group">
       <div class="ios-row">
         <span class="ios-row-label">Was</span>
-        <input type="text" id="f-item" placeholder="z.B. Bohrmaschine" />
+        <input type="text" id="f-item" placeholder="Pflichtfeld" />
       </div>
     </div>
-    <p class="section-label">Personen</p>
+    <p class="section-label">Personen <span style="color:var(--red)">*</span></p>
     <div class="ios-group">
       <div class="ios-row">
         <span class="ios-row-label">Verliehen an</span>
-        <input type="text" id="f-person" placeholder="Name" />
-      </div>
-      <div class="ios-row">
-        <span class="ios-row-label">Verliehen von</span>
-        <input type="text" id="f-lender" placeholder="Name" />
+        <input type="text" id="f-person" placeholder="Pflichtfeld" oninput="filterSuggestions('person',this.value)" onfocus="showSuggestions('person')" />
       </div>
     </div>
-    <p class="section-label">Datum</p>
+    <div class="person-suggestions" id="suggestions-person"></div>
+    <div class="ios-group" style="margin-top:8px">
+      <div class="ios-row">
+        <span class="ios-row-label">Verliehen von</span>
+        <input type="text" id="f-lender" placeholder="Pflichtfeld" oninput="filterSuggestions('lender',this.value)" onfocus="showSuggestions('lender')" />
+      </div>
+    </div>
+    <div class="person-suggestions" id="suggestions-lender"></div>
+    <p class="section-label" style="margin-top:4px">Datum</p>
     <div class="ios-group">
       <div class="ios-row">
-        <span class="ios-row-label">Verliehen am</span>
+        <span class="ios-row-label">Verliehen am <span style="color:var(--red)">*</span></span>
         <input type="date" id="f-lentdate" />
       </div>
       <div class="ios-row">
-        <span class="ios-row-label">Rückgabe bis</span>
+        <span class="ios-row-label">Rückgabe bis <span style="color:var(--text2);font-size:12px">(optional)</span></span>
         <input type="date" id="f-returndate" />
       </div>
     </div>
@@ -710,7 +756,7 @@
     <div class="ios-group">
       <button class="btn-danger-row" onclick="confirmLeave()">Raum verlassen & Code löschen</button>
     </div>
-    <div class="settings-footer">Lendo · Version 2.8<br>Daten gespeichert auf Firebase</div>
+    <div class="settings-footer">Lendo · Version 2.9<br>Daten gespeichert auf Firebase</div>
   </div>
 </div>
 
@@ -762,8 +808,18 @@
     if (navSmall) navSmall.style.display = "none";
   }
 
-  function showMain() {
-    show("main-screen");
+  function showMain(from) {
+    const fromId = from || "detail-screen";
+    // Finde welcher Screen aktuell sichtbar ist
+    const visible = ["detail-screen","add-screen","settings-screen"].find(s => {
+      const el = document.getElementById(s);
+      return el && el.style.display !== "none" && el.style.display !== "";
+    });
+    if (visible) {
+      transitionTo(visible, "main-screen", "back");
+    } else {
+      show("main-screen");
+    }
     renderList();
     const scroll = document.getElementById("main-scroll");
     if (scroll) scroll.scrollTop = 0;
@@ -847,12 +903,25 @@
     document.getElementById("add-error").style.display="none";
     document.getElementById("btn-save").textContent="Fertig";
     document.getElementById("btn-save").disabled=false;
-    show("add-screen");
+    // Transition von aktuellem Screen zu add
+    const curVisible = ["main-screen","detail-screen"].find(s => {
+      const el = document.getElementById(s);
+      return el && el.style.display !== "none" && el.style.display !== "";
+    });
+    if (curVisible) transitionTo(curVisible, "add-screen", "forward");
+    else show("add-screen");
   }
 
   function cancelAdd() {
-    if (editingId) showDetail(editingId);
-    else showMain();
+    if (editingId) {
+      transitionTo("add-screen", "detail-screen", "back");
+      currentDetailId = editingId;
+      // Re-render detail
+      setTimeout(() => showDetail(editingId, true), 0);
+    } else {
+      transitionTo("add-screen", "main-screen", "back");
+      setTimeout(() => renderList(), 0);
+    }
   }
 
   async function saveItem() {
@@ -873,13 +942,18 @@
     try {
       await fbSetSafe(`rooms/${roomCode}/items/${id}`, newItem);
       items[id] = newItem;
-      if (editingId) showDetail(id);
-      else showMain();
+      if (editingId) {
+        transitionTo("add-screen", "detail-screen", "back");
+        setTimeout(() => { currentDetailId = id; showDetail(id, true); }, 0);
+      } else {
+        transitionTo("add-screen", "main-screen", "back");
+        setTimeout(() => renderList(), 0);
+      }
     } catch(e) { errEl.textContent="Fehler: "+e.message; errEl.style.display="block"; btn.disabled=false; btn.textContent="Fertig"; }
   }
 
   // ── Detail ──
-  function showDetail(id) {
+  function showDetail(id, skipTransition) {
     currentDetailId = id;
     const it = items[id];
     if (!it) { showMain(); return; }
@@ -924,7 +998,7 @@
         ${it.returned ? `<div class="detail-row"><span class="detail-label">Zurückbekommen</span><span class="detail-value" style="color:var(--green)">${fmtDate(it.returnedDate)}</span></div>` : ""}
       </div>
       ${actions}`;
-    show("detail-screen");
+    transitionTo("main-screen", "detail-screen", "forward");
   }
 
   async function markReturned(id) {
@@ -1133,7 +1207,9 @@
   // ── Settings ──
   function showSettings() {
     document.getElementById("settings-code").value = roomCode;
-    show("settings-screen");
+    const curVis = document.getElementById("main-screen");
+    if (curVis && curVis.style.display !== "none") transitionTo("main-screen", "settings-screen", "forward");
+    else show("settings-screen");
   }
 
   async function saveSettings() {
@@ -1154,6 +1230,80 @@
     }
   }
 
+
+
+  // ── Screen Transitions ──
+  function transitionTo(fromId, toId, direction) {
+    // direction: 'forward' (slide left) oder 'back' (slide right)
+    const from = document.getElementById(fromId);
+    const to = document.getElementById(toId);
+    if (!from || !to) { show(toId); return; }
+
+    to.style.display = 'block';
+    to.style.transform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-30%)';
+    to.style.opacity = direction === 'forward' ? '1' : '0';
+    to.style.transition = 'none';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        to.style.transition = 'transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.25s ease';
+        to.style.transform = 'translateX(0)';
+        to.style.opacity = '1';
+
+        from.style.transition = 'transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.25s ease';
+        from.style.transform = direction === 'forward' ? 'translateX(-30%)' : 'translateX(100%)';
+        from.style.opacity = direction === 'forward' ? '0' : '1';
+
+        setTimeout(() => {
+          from.style.display = 'none';
+          from.style.transform = '';
+          from.style.opacity = '';
+          from.style.transition = '';
+          to.style.transition = '';
+        }, 310);
+      });
+    });
+  }
+
+
+  // ── Personen-Vorschläge ──
+  function getKnownPersons() {
+    const persons = new Set();
+    Object.values(items).forEach(it => {
+      if (it.person) persons.add(it.person);
+      if (it.lender) persons.add(it.lender);
+    });
+    return [...persons].sort();
+  }
+
+  function showSuggestions(field) {
+    const persons = getKnownPersons();
+    const inputId = field === 'person' ? 'f-person' : 'f-lender';
+    const val = document.getElementById(inputId).value.toLowerCase();
+    renderSuggestions(field, persons.filter(p => !val || p.toLowerCase().includes(val)));
+  }
+
+  function filterSuggestions(field, val) {
+    const persons = getKnownPersons().filter(p => !val || p.toLowerCase().includes(val.toLowerCase()));
+    renderSuggestions(field, persons);
+  }
+
+  function renderSuggestions(field, persons) {
+    const el = document.getElementById('suggestions-' + field);
+    const inputId = field === 'person' ? 'f-person' : 'f-lender';
+    if (!persons.length) { el.innerHTML = ''; return; }
+    el.innerHTML = persons.map(p =>
+      `<button class="person-chip-btn" onclick="selectPerson('${field}','${p.replace(/'/g,"\'")}')">
+        ${p}
+      </button>`
+    ).join('');
+  }
+
+  function selectPerson(field, name) {
+    const inputId = field === 'person' ? 'f-person' : 'f-lender';
+    document.getElementById(inputId).value = name;
+    document.getElementById('suggestions-' + field).innerHTML = '';
+  }
 
   // ── Offline ──
   let pendingChanges = JSON.parse(localStorage.getItem("lendo_pending") || "{}");
