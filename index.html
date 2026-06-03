@@ -760,7 +760,7 @@
     <div class="ios-group">
       <div class="ios-row" style="justify-content:space-between">
         <span class="ios-row-label">Version</span>
-        <span style="color:var(--text2);font-size:15px">2.9</span>
+        <span style="color:var(--text2);font-size:15px" id="version-settings"></span>
       </div>
       <div class="ios-row" style="border-top:0.5px solid var(--sep);justify-content:space-between">
         <span class="ios-row-label">Entwickelt von</span>
@@ -784,7 +784,7 @@
 </div>
 
 <script>
-  const APP_VERSION = "3.1";
+  const APP_VERSION = "3.2";
   const FB = "https://verliehen-44d47-default-rtdb.europe-west1.firebasedatabase.app";
   let roomCode = "", items = {}, filter = "offen", pollTimer = null, searchQ = "", editingId = null, currentDetailId = null;
 
@@ -1258,33 +1258,37 @@
 
   // ── Screen Transitions ──
   function transitionTo(fromId, toId, direction) {
-    // direction: 'forward' (slide left) oder 'back' (slide right)
     const from = document.getElementById(fromId);
     const to = document.getElementById(toId);
     if (!from || !to) { show(toId); return; }
 
-    to.style.display = 'block';
-    to.style.transform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-30%)';
-    to.style.opacity = direction === 'forward' ? '1' : '0';
+    // Positioniere to sofort rechts (forward) oder links (back)
+    to.style.position = 'fixed';
+    to.style.top = '0'; to.style.left = '0';
+    to.style.width = '100%'; to.style.height = '100%';
+    to.style.zIndex = '50';
+    to.style.transform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-100%)';
     to.style.transition = 'none';
+    to.style.display = 'block';
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        to.style.transition = 'transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.25s ease';
+        to.style.transition = 'transform 0.32s cubic-bezier(.32,.72,0,1)';
         to.style.transform = 'translateX(0)';
-        to.style.opacity = '1';
-
-        from.style.transition = 'transform 0.3s cubic-bezier(.32,.72,0,1), opacity 0.25s ease';
+        from.style.transition = 'transform 0.32s cubic-bezier(.32,.72,0,1)';
         from.style.transform = direction === 'forward' ? 'translateX(-30%)' : 'translateX(100%)';
-        from.style.opacity = direction === 'forward' ? '0' : '1';
 
         setTimeout(() => {
           from.style.display = 'none';
           from.style.transform = '';
-          from.style.opacity = '';
           from.style.transition = '';
+          to.style.position = '';
+          to.style.top = ''; to.style.left = '';
+          to.style.width = ''; to.style.height = '';
+          to.style.zIndex = '';
+          to.style.transform = '';
           to.style.transition = '';
-        }, 310);
+        }, 340);
       });
     });
   }
