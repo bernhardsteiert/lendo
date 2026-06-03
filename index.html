@@ -784,7 +784,7 @@
 </div>
 
 <script>
-  const APP_VERSION = "3.3";
+  const APP_VERSION = "3.4";
   const FB = "https://verliehen-44d47-default-rtdb.europe-west1.firebasedatabase.app";
   let roomCode = "", items = {}, filter = "offen", pollTimer = null, searchQ = "", editingId = null, currentDetailId = null;
 
@@ -1262,49 +1262,24 @@
     const to = document.getElementById(toId);
     if (!from || !to) { show(toId); return; }
 
-    const W = window.innerWidth;
-
-    // Beide Screens fix positionieren nebeneinander
-    [from, to].forEach(el => {
-      el.style.position = 'fixed';
-      el.style.top = '0';
-      el.style.width = '100%';
-      el.style.maxWidth = '430px';
-      el.style.height = '100%';
-      el.style.overflowY = 'auto';
-      el.style.transition = 'none';
-      el.style.willChange = 'transform';
-    });
-
-    // from bleibt bei 0, to startet außerhalb
-    from.style.transform = 'translateX(0)';
-    to.style.transform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-100%)';
+    to.style.opacity = '0';
     to.style.display = 'block';
+    to.style.transition = 'none';
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        const ease = 'transform 0.32s cubic-bezier(.32,.72,0,1)';
-        from.style.transition = ease;
-        to.style.transition = ease;
-
-        to.style.transform = 'translateX(0)';
-        from.style.transform = direction === 'forward' ? 'translateX(-25%)' : 'translateX(100%)';
+        to.style.transition = 'opacity 0.22s ease';
+        to.style.opacity = '1';
+        from.style.transition = 'opacity 0.22s ease';
+        from.style.opacity = '0';
 
         setTimeout(() => {
           from.style.display = 'none';
-          // Reset aller inline styles
-          [from, to].forEach(el => {
-            el.style.position = '';
-            el.style.top = '';
-            el.style.width = '';
-            el.style.maxWidth = '';
-            el.style.height = '';
-            el.style.overflowY = '';
-            el.style.transition = '';
-            el.style.transform = '';
-            el.style.willChange = '';
-          });
-        }, 340);
+          from.style.opacity = '';
+          from.style.transition = '';
+          to.style.opacity = '';
+          to.style.transition = '';
+        }, 230);
       });
     });
   }
